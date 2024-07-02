@@ -1,94 +1,63 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    float horizontalInput;
-    [SerializeField] float speed = 5f;
-    [SerializeField] float jumpForce = 5f;
-    bool leftButton = false;
-    bool rightButton = false;
-    bool jumpButton = false;
+    public float jumpForce = 10f;
+    public float sideMovementSpeed = 5f;
+
+    private bool isGrounded;
+    private Rigidbody rb;
+
+    void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
 
     void Update()
     {
-        horizontalInput = Input.GetAxis("Horizontal");
 
-        CheckInputs();
-
-        if (jumpButton)
+        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
         {
             Jump();
         }
-    }
 
-    void CheckInputs()
-    {
-        if (leftButton)
+        float horizontalInput = Input.GetAxis("Horizontal");
+        if (Mathf.Abs(horizontalInput) > 0)
         {
-            MoveLeft();
-        }
-        if (rightButton)
-        {
-            MoveRight();
+            MoveSideways(horizontalInput);
         }
     }
 
-    void MoveLeft()
+    void FixedUpdate()
     {
-        Vector3 newPosition = transform.position + Vector3.left * speed * Time.deltaTime;
-
-        if (newPosition.x > -1f)
-        {
-            transform.Translate(Vector3.left * speed * Time.deltaTime);
-        }
+        CheckGrounded();
     }
 
-    void MoveRight()
+    void CheckGrounded()
     {
-        Vector3 newPosition = transform.position + Vector3.right * speed * Time.deltaTime;
-
-        if (newPosition.x < 2f)
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, Vector3.down, out hit, 0.1f))
         {
-            transform.Translate(Vector3.right * speed * Time.deltaTime);
+            isGrounded = true;
+        }
+        else
+        {
+            isGrounded = false;
         }
     }
 
     void Jump()
     {
-        GetComponent<Rigidbody>().velocity = new Vector3(0, jumpForce, 0);
-
-        jumpButton = false;
+        if (isGrounded)
+        {
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            isGrounded = false;
+        }
     }
 
-    public void IsClickedRight()
+    void MoveSideways(float direction)
     {
-        rightButton = true;
-    }
-
-    public void IsClickedLeft()
-    {
-        leftButton = true;
-    }
-
-    public void IsClickedJump()
-    {
-        jumpButton = true;
-    }
-
-    public void IsNotClickedRight()
-    {
-        rightButton = false;
-    }
-
-    public void IsNotClickedLeft()
-    {
-        leftButton = false;
-    }
-
-    public void IsNotClickedJump()
-    {
-        jumpButton = false;
+        Vector3 movement = new Vector3(direction * sideMovementSpeed * Time.deltaTime, 0f, 0f);
+        transform.Translate(movement);
     }
 }

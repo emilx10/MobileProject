@@ -1,20 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TriggerCollision : MonoBehaviour
 {
-
-    private void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Trigger"))
+        if (other.gameObject.CompareTag("Obstacle"))
         {
-            GameObject obstacle = ObjectPool.instance.GetPooledObject();
-
-            if(obstacle != null )
-            {
-                obstacle.SetActive(true);
-            }
+            Debug.Log("Game Over");
         }
     }
 }
