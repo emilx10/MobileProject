@@ -3,34 +3,40 @@ using UnityEngine;
 public class ObstacleSpawner : MonoBehaviour
 {
     public ObjectPoolManager poolManager;
-    public GameObject roadPrefab;
-    public float spawnInterval = 2f; // Interval between each spawn
-    public float startDelay = 2f; // Delay before first spawn
 
-    private float spawnTimer;
+    public float roadSpawnInterval = 2f;
+    public float roadStartDelay = 2f;
 
-    private float roadSpawn = 20f;
-    private float obstacleSpawn = 20f;
+    public float obstacleSpawnInterval = 3f;
+    public float obstacleStartDelay = 3f;
+
+    private float roadSpawnTimer;
+    private float obstacleSpawnTimer;
+
+    [SerializeField] private float roadSpawnZ = -26f;
+    [SerializeField] private float obstacleSpawnZ = -10f;
+
     void Start()
     {
-        spawnTimer = startDelay;
+        roadSpawnTimer = roadStartDelay;
+        obstacleSpawnTimer = obstacleStartDelay;
     }
 
     void Update()
     {
-        // Count down the timer
-        spawnTimer -= Time.deltaTime;
+        roadSpawnTimer -= Time.deltaTime;
+        obstacleSpawnTimer -= Time.deltaTime;
 
-        if (spawnTimer <= 0)
+        if (roadSpawnTimer <= 0)
         {
-            // Spawn road
             SpawnRoad();
+            roadSpawnTimer = roadSpawnInterval;
+        }
 
-            // Spawn obstacle
+        if (obstacleSpawnTimer <= 0)
+        {
             SpawnObstacle();
-
-            // Reset timer
-            spawnTimer = spawnInterval;
+            obstacleSpawnTimer = obstacleSpawnInterval;
         }
     }
 
@@ -38,6 +44,7 @@ public class ObstacleSpawner : MonoBehaviour
     {
         GameObject road = poolManager.GetRoad();
         road.transform.position = CalculateRoadSpawnPosition();
+        road.tag = "Road";
         road.SetActive(true);
     }
 
@@ -45,25 +52,22 @@ public class ObstacleSpawner : MonoBehaviour
     {
         GameObject obstacle = poolManager.GetObstacle();
         obstacle.transform.position = CalculateObstacleSpawnPosition();
+        obstacle.tag = "Obstacle";
         obstacle.SetActive(true);
     }
 
     Vector3 CalculateRoadSpawnPosition()
     {
-        // Calculate where to spawn the road (example)
-        float spawnX = 0f; // Road spawns in the center
-        float spawnZ = transform.position.z - roadSpawn;
-        roadSpawn += 20;
+        float spawnX = 0f;
+        float spawnZ = transform.position.z + roadSpawnZ;
 
         return new Vector3(spawnX, 0f, spawnZ);
     }
 
     Vector3 CalculateObstacleSpawnPosition()
     {
-        // Calculate where to spawn the obstacle (example)
-        float spawnX = Random.Range(-2f, 2f); // Randomize X position within range
-        float spawnZ = transform.position.z - obstacleSpawn; // Spawn ahead of the player
-        obstacleSpawn += 30;
+        float spawnX = Random.Range(-2f, 2f);
+        float spawnZ = transform.position.z + obstacleSpawnZ;
 
         return new Vector3(spawnX, 0.5f, spawnZ);
     }

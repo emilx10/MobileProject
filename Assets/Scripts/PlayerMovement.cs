@@ -8,6 +8,12 @@ public class PlayerMovement : MonoBehaviour
     private bool isGrounded;
     private Rigidbody rb;
 
+    private Vector2 startTouchPosition;
+    private Vector2 endTouchPosition;
+    private bool isTouching = false;
+    private float swipeThreshold = 50f;
+    private bool swipeUpDetected = false;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -15,16 +21,43 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-
-        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+        if (Input.touchCount > 0)
         {
-            Jump();
-        }
+            Touch touch = Input.GetTouch(0);
 
-        float horizontalInput = Input.GetAxis("Horizontal");
-        if (Mathf.Abs(horizontalInput) > 0)
-        {
-            MoveSideways(horizontalInput);
+            switch (touch.phase)
+            {
+                case TouchPhase.Began:
+                    startTouchPosition = touch.position;
+                    isTouching = true;
+                    swipeUpDetected = false;
+                    break;
+
+                case TouchPhase.Moved:
+                    endTouchPosition = touch.position;
+                    float verticalSwipeDistance = endTouchPosition.y - startTouchPosition.y;
+
+                    if (Mathf.Abs(verticalSwipeDistance) > swipeThreshold)
+                    {
+                        if (verticalSwipeDistance > 0)
+                        {
+                            swipeUpDetected = true;
+                        }
+                    }
+                    else
+                    {
+                        MovePlayerWithTouch();
+                    }
+                    break;
+
+                case TouchPhase.Ended:
+                    if (swipeUpDetected)
+                    {
+                        Jump();
+                    }
+                    isTouching = false;
+                    break;
+            }
         }
     }
 
@@ -55,9 +88,19 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    void MoveSideways(float direction)
+    void MovePlayerWithTouch()
     {
-        Vector3 movement = new Vector3(direction * sideMovementSpeed * Time.deltaTime, 0f, 0f);
-        transform.Translate(movement);
+        float swipeDistanceLeft = startTouchPosition.x - endTouchPosition.x;
+        float swipeDistanceRight = endTouchPosition.x - startTouchPosition.x;
+        if (swipeDistanceRight > 0)
+        {
+            transform.Translate(Vector3.right * sideMovementSpeed * Time.deltaTime);
+        }
+        if(swipeDistanceLeft > 0)
+        {
+            transform.Translate(Vector3.left * sideMovementSpeed * Time.deltaTime);
+        }
+
+        startTouchPosition = endTouchPosition;
     }
 }

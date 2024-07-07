@@ -9,7 +9,7 @@ public class RoadMovement : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(DestroyAfterTime(destroyTime));
+       // StartCoroutine(DestroyAfterTime(destroyTime));
     }
 
     void Update()
@@ -17,12 +17,12 @@ public class RoadMovement : MonoBehaviour
         transform.Translate(Vector3.back * speed * Time.deltaTime);
     }
 
-    IEnumerator DestroyAfterTime(float time)
-    {
-        yield return new WaitForSeconds(time);
+    //IEnumerator DestroyAfterTime(float time)
+    //{
+       // yield return new WaitForSeconds(time);
 
-        Destroy(gameObject);
+      //  Destroy(gameObject);
 
-        destroyTime += 10f;
-    }
+      //  destroyTime += 10f;
+    //}
 }

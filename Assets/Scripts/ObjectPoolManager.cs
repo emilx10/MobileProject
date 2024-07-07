@@ -61,13 +61,11 @@ public class ObjectPoolManager : MonoBehaviour
     void OnTakeRoadFromPool(GameObject obj)
     {
         obj.SetActive(true);
-        // Additional setup logic for road if needed
     }
 
     void OnReturnRoadToPool(GameObject obj)
     {
         obj.SetActive(false);
-        // Reset road object if needed
     }
 
     void OnDestroyRoadObject(GameObject obj)
@@ -78,13 +76,11 @@ public class ObjectPoolManager : MonoBehaviour
     void OnTakeObstacleFromPool(GameObject obj)
     {
         obj.SetActive(true);
-        // Additional setup logic for obstacle if needed
     }
 
     void OnReturnObstacleToPool(GameObject obj)
     {
         obj.SetActive(false);
-        // Reset obstacle object if needed
     }
 
     void OnDestroyObstacleObject(GameObject obj)
