@@ -2,12 +2,14 @@ using UnityEngine;
 
 public class TriggerCollision : MonoBehaviour
 {
+    ScoreManager scoreManager;
+
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Obstacle"))
+        if (other.gameObject.CompareTag("Obstacle"))
         {
-
-            Debug.Log("Aya");
+            scoreManager.GameOver();
+            Debug.Log("Ouch");
         }
     }
 }
