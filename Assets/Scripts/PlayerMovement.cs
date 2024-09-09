@@ -39,6 +39,13 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+        scoreManager = FindObjectOfType<ScoreManager>();
+
+        if (scoreManager == null)
+        {
+            Debug.LogError("ScoreManager not found!");
+        }
+
         rb = GetComponent<Rigidbody>();
 
         EventTrigger leftTrigger = leftArrowButton.gameObject.AddComponent<EventTrigger>();

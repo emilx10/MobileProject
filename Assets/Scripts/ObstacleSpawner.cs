@@ -69,6 +69,9 @@ public class ObstacleSpawner : MonoBehaviour
         float spawnX = Random.Range(-2f, 2f);
         float spawnZ = transform.position.z + obstacleSpawnZ;
 
-        return new Vector3(spawnX, 0.5f, spawnZ);
+        float spawnY = (Random.Range(0, 2) == 0) ? 0.5f : 2f;
+
+        return new Vector3(spawnX, spawnY, spawnZ);
     }
+
 }

@@ -14,14 +14,4 @@ public class MainMenu : MonoBehaviour
     {
         Application.Quit();
     }
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
