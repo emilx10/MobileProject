@@ -2080,6 +2080,7 @@ GameObject:
   - component: {fileID: 1872660067}
   - component: {fileID: 1872660066}
   - component: {fileID: 1872660070}
+  - component: {fileID: 1872660071}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2154,6 +2155,23 @@ MonoBehaviour:
   gameOverText: {fileID: 1022170011}
   player: {fileID: 1105754875}
   speedIncreaseAmount: 1.5
+--- !u!114 &1872660071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1872660065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46d949236b3809b4e9b9167a14f31264, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Arrows:
+  - {fileID: 662955980}
+  - {fileID: 976831623}
+  - {fileID: 431429978}
+  - {fileID: 883653693}
 --- !u!1001 &3336463336879969525
 PrefabInstance:
   m_ObjectHideFlags: 0
