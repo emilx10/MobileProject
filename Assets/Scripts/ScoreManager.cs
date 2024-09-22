@@ -55,7 +55,7 @@ public class ScoreManager : MonoBehaviour
     void CheckForCheckpoint()
     {
         // If the score is a multiple of 50 and we haven't saved the checkpoint yet
-        if (Mathf.FloorToInt(score) % 20 == 0 && Mathf.FloorToInt(score) != lastCheckpointScore)
+        if (Mathf.FloorToInt(score) % 50 == 0 && Mathf.FloorToInt(score) != lastCheckpointScore)
         {
             SaveCheckpoint();
             lastCheckpointScore = Mathf.FloorToInt(score); // Store the last checkpoint score
@@ -81,7 +81,7 @@ public class ScoreManager : MonoBehaviour
     void IncreaseSpeed()
     {
         // If the score is a multiple of 50, increase speed
-        if (Mathf.FloorToInt(score) % 20 == 0 && Mathf.FloorToInt(score) != lastCheckpointScore)
+        if (Mathf.FloorToInt(score) % 50 == 0 && Mathf.FloorToInt(score) != lastCheckpointScore)
         {
             currentSpeed += speedIncreaseAmount; // Adjust speed of your object
             // Here you need to apply this speed increase to the player or the moving obstacles
