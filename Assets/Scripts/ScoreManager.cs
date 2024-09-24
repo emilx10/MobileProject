@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 public class ScoreManager : MonoBehaviour
 {
@@ -14,7 +15,7 @@ public class ScoreManager : MonoBehaviour
     private bool isGameOver = false;
     private float currentSpeed = 5f; // Assuming you have a base speed for the player or obstacles
     private int lastCheckpointScore = 0;
-    public List<GameObject> CheckPoint;
+    public GameObject[] Checkpoint;
     void Update()
     {
         if (!isGameOver)
@@ -23,6 +24,41 @@ public class ScoreManager : MonoBehaviour
             UpdateScoreText();
             CheckForCheckpoint();
             IncreaseSpeed();
+        }
+        for(int i = 0; i < Checkpoint.Length; i++)
+        {
+            if(Mathf.FloorToInt(score) >= 50)
+            {
+                Checkpoint[i].SetActive(true);
+            }
+            if (Mathf.FloorToInt(score) >= 100)
+            {
+                Checkpoint[i].SetActive(true);
+            }
+            if (Mathf.FloorToInt(score) >= 150)
+            {
+                Checkpoint[i].SetActive(true);
+            }
+            if (Mathf.FloorToInt(score) >= 200)
+            {
+                Checkpoint[i].SetActive(true);
+            }
+            if (Mathf.FloorToInt(score) >= 250)
+            {
+                Checkpoint[i].SetActive(true);
+            }
+            if (Mathf.FloorToInt(score) >= 300)
+            {
+                Checkpoint[i].SetActive(true);
+            }
+            if (Mathf.FloorToInt(score) >= 350)
+            {
+                Checkpoint[i].SetActive(true);
+            }
+            if (Mathf.FloorToInt(score) >= 400)
+            {
+                Checkpoint[i].SetActive(true);
+            }
         }
     }
 
@@ -97,6 +133,6 @@ public class ScoreManager : MonoBehaviour
         Time.timeScale = 0f;
         yield return new WaitForSecondsRealtime(2f);
         Time.timeScale = 1f;
-        SceneManager.LoadScene("GameOverScene");
+        SceneManager.LoadScene("End Game");
     }
 }
