@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using System.Collections.Generic;
 
 public class ScoreManager : MonoBehaviour
 {
@@ -13,7 +14,7 @@ public class ScoreManager : MonoBehaviour
     private bool isGameOver = false;
     private float currentSpeed = 5f; // Assuming you have a base speed for the player or obstacles
     private int lastCheckpointScore = 0;
-
+    public List<GameObject> CheckPoint;
     void Update()
     {
         if (!isGameOver)
@@ -55,11 +56,13 @@ public class ScoreManager : MonoBehaviour
     void CheckForCheckpoint()
     {
         // If the score is a multiple of 50 and we haven't saved the checkpoint yet
-        if (Mathf.FloorToInt(score) % 20 == 0 && Mathf.FloorToInt(score) != lastCheckpointScore)
+        if (Mathf.FloorToInt(score) % 50 == 0 && Mathf.FloorToInt(score) != lastCheckpointScore)
         {
             SaveCheckpoint();
             lastCheckpointScore = Mathf.FloorToInt(score); // Store the last checkpoint score
+
         }
+        
     }
 
     void SaveCheckpoint()
