@@ -12,9 +12,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Game.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
-    path: Assets/Scenes/GameOverScene.unity
-    guid: 91e301a33f51b01429ba84778878b6f2
+    path: Assets/Scenes/End Game.unity
+    guid: adf653ed60e91a84bb97ddb3d07a1d0b
   - enabled: 1
     path: Assets/Scenes/HighScoreScreen.unity
     guid: 430195bee0a07c240b33e0cfb93b6296
+  - enabled: 1
+    path: Assets/Scenes/CheckPointSelect.unity
+    guid: 4f530065dc5e7064aaecd914e9dfbf21
   m_configObjects: {}

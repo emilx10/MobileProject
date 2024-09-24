@@ -19,5 +19,10 @@ public class MainMenu : MonoBehaviour
     {
         SceneManager.LoadSceneAsync("Main menu");
     }
+
+    public void CheckPointScene()
+    {
+        SceneManager.LoadSceneAsync("CheckPointSelect");
+    }
    
 }
