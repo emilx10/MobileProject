@@ -10,7 +10,6 @@ public class CheckPointCoinsbutton : MonoBehaviour
     public Text CoinsNeded;
     private int playerCoins;
     private int CoinsRequired;
-    public Text GamePoints;
     private void Start()
     {
         playerCoins = int.Parse(playerCoinsAmount.text);
@@ -23,7 +22,10 @@ public class CheckPointCoinsbutton : MonoBehaviour
         {
             playerCoins -= CoinsRequired;
             playerCoinsAmount.text = playerCoins.ToString();
-            GamePoints.text = CoinsRequired.ToString();
+
+            PlayerPrefs.SetInt("StartingScore", CoinsRequired);
+            PlayerPrefs.Save();
+
             SceneManager.LoadScene("Game");
 
         }

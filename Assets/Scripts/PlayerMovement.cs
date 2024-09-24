@@ -5,12 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public Material playerMaterial;
+    public Color playerColor;
+
     public float jumpForce = 10f;
     public float sideMovementSpeed = 5f;
     public float crouchDuration = 0.7f;
     public float crouchSpeedMultiplier = 2f;
-    public Vector3 crouchScale = new Vector3(1f, 0.5f, 1f);
-    public Vector3 originalScale = new Vector3(1f, 1f, 1f);
+    public Vector3 crouchScale = new Vector3(0.5f, 0.5f, 0.5f);
+    public Vector3 originalScale = new Vector3(1.6373f, 1.7961f, 1f);
 
     private bool isGrounded;
     private Rigidbody rb;
@@ -62,6 +65,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        playerMaterial.color = playerColor;
         HandleTouchInput();
         HandleButtonInput();
 

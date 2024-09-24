@@ -15,7 +15,13 @@ public class ScoreManager : MonoBehaviour
     private bool isGameOver = false;
     private float currentSpeed = 5f; // Assuming you have a base speed for the player or obstacles
     private int lastCheckpointScore = 0;
-    public GameObject[] Checkpoint;
+    private void Start()
+    {
+        score = PlayerPrefs.GetInt("StartingScore", 0);
+
+        scoreText.text = score.ToString();
+    }
+
     void Update()
     {
         if (!isGameOver)
@@ -24,41 +30,6 @@ public class ScoreManager : MonoBehaviour
             UpdateScoreText();
             CheckForCheckpoint();
             IncreaseSpeed();
-        }
-        for(int i = 0; i < Checkpoint.Length; i++)
-        {
-            if(Mathf.FloorToInt(score) >= 50)
-            {
-                Checkpoint[i].SetActive(true);
-            }
-            if (Mathf.FloorToInt(score) >= 100)
-            {
-                Checkpoint[i].SetActive(true);
-            }
-            if (Mathf.FloorToInt(score) >= 150)
-            {
-                Checkpoint[i].SetActive(true);
-            }
-            if (Mathf.FloorToInt(score) >= 200)
-            {
-                Checkpoint[i].SetActive(true);
-            }
-            if (Mathf.FloorToInt(score) >= 250)
-            {
-                Checkpoint[i].SetActive(true);
-            }
-            if (Mathf.FloorToInt(score) >= 300)
-            {
-                Checkpoint[i].SetActive(true);
-            }
-            if (Mathf.FloorToInt(score) >= 350)
-            {
-                Checkpoint[i].SetActive(true);
-            }
-            if (Mathf.FloorToInt(score) >= 400)
-            {
-                Checkpoint[i].SetActive(true);
-            }
         }
     }
 

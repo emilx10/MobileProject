@@ -6,10 +6,17 @@ using UnityEngine.UI;
 public class MainMenuCoinManager : MonoBehaviour
 {
     public Text coinsText;
-
+    private int coinsMenuAmount = 0;
     void Start()
     {
-        coinsText.text = ""+PlayerPrefs.GetInt("PlayerCoins"); 
+        PlayerPrefs.SetInt("Menu Coins", coinsMenuAmount);
+        PlayerPrefs.Save();
+        coinsText.text = ""+PlayerPrefs.GetInt("Menu Coins");
+    }
+
+    private void Update()
+    {
+        coinsText.text = "" + PlayerPrefs.GetInt("Menu Coins");
     }
 
 }

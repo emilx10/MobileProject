@@ -77,6 +77,8 @@ public class DailyReward : MonoBehaviour
             playerCoins += coinsPerDay;
             PlayerPrefs.SetInt("PlayerCoins", playerCoins);
             PlayerPrefs.Save();
+            PlayerPrefs.SetInt("Menu Coins", playerCoins);
+            PlayerPrefs.Save();
             UpdateCoinsText();
 
             currentDay++;
