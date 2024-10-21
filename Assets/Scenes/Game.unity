@@ -2056,12 +2056,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.22
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -2210,6 +2210,7 @@ GameObject:
   - component: {fileID: 1872660070}
   - component: {fileID: 1872660071}
   - component: {fileID: 1872660072}
+  - component: {fileID: 1872660073}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2315,6 +2316,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerCoinsAmount: {fileID: 0}
   CoinsNeded: {fileID: 0}
+--- !u!114 &1872660073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1872660065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49ce36f3df4eb9844aed58c979bdbf78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  checkpointID: 0
 --- !u!1001 &3336463336879969525
 PrefabInstance:
   m_ObjectHideFlags: 0
